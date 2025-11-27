@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tierra - Último terremoto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img src="assets/earth.svg" alt="Earth" style="width:100%; max-width:400px; display:block; margin:auto;">
+  <ion-button expand="full" (click)="fetchLatest()" [disabled]="loading" color="primary" style="margin-top:16px;">
+    {{ loading ? 'Cargando...' : 'Obtener último terremoto' }}
+  </ion-button>
+
+  <div *ngIf="error" style="color:red; margin-top:12px;">{{ error }}</div>
+
+  <ion-card *ngIf="latest" style="margin-top:12px;">
+    <ion-card-header>
+      <ion-card-title>{{ latest.place }}</ion-card-title>
+      <ion-card-subtitle>Magnitud: {{ latest.mag }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div>Fecha: {{ latest.time | date:'medium' }}</div>
+      <div>Coordenadas: {{ latest.latitude }}, {{ latest.longitude }}</div>
+      <div>Profundidad: {{ latest.depth }} km</div>
+      <div *ngIf="latest.url"><a [href]="latest.url" target="_blank">Más info</a></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

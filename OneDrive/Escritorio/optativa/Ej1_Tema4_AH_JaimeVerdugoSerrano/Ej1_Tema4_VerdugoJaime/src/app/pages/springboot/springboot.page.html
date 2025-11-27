@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mi API en Render</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img src="assets/student.svg" alt="Student" style="width:100%; max-width:400px; display:block; margin:auto;">
+  <ion-button expand="full" (click)="fetchFromRender()" [disabled]="loading" color="secondary" style="margin-top:16px;">
+    {{ loading ? 'Cargando...' : 'Obtener datos de Render' }}
+  </ion-button>
+
+  <ion-button expand="full" (click)="fetchFromRender()" [disabled]="loading" color="tertiary" style="margin-top:8px;">
+    {{ loading ? 'Cargando...' : 'Recargar listado' }}
+  </ion-button>
+
+  <div *ngIf="error" style="color:red; margin-top:12px;">{{ error }}</div>
+  <ion-list *ngIf="data?.length">
+    <ion-item *ngFor="let c of data">
+      <ion-card style="width:100%;">
+        <ion-card-header>
+          <ion-card-title>{{ c.nombre }} <small style="font-size:12px; color:#666;"> - {{ c.tipo?.nombre || '' }}</small></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="flex:0 0 120px;">
+              <img *ngIf="c.imagenUrl" [src]="c.imagenUrl" alt="{{c.nombre}}" style="width:100%; height:auto; border-radius:6px;" />
+              <img *ngIf="!c.imagenUrl" src="assets/student.svg" alt="placeholder" style="width:100%; height:auto; border-radius:6px;" />
+            </div>
+            <div style="flex:1;">
+              <div><strong>Precio:</strong> €{{ c.precio }}</div>
+              <div><strong>Talla:</strong> {{ c.talla }}</div>
+              <div><strong>Color:</strong> {{ c.color }}</div>
+              <div *ngIf="c.lat && c.lng"><strong>Coordenadas:</strong> {{ c.lat }}, {{ c.lng }}</div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!data || data.length === 0" style="margin-top:12px; color:#666;">No hay datos.</div>
+  <div *ngIf="rawResponse" style="margin-top:12px;">
+    <h3 style="margin:6px 0 4px 0;">Respuesta cruda del servidor (para depuración):</h3>
+    <pre style="background:#f6f6f6; padding:8px; border-radius:6px; max-height:240px; overflow:auto;">{{ rawResponse }}</pre>
+  </div>
+</ion-content>

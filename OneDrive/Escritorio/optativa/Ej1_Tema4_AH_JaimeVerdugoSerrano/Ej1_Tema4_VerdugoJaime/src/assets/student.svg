@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="400" height="400">
+  <rect width="64" height="64" rx="8" fill="#6c5ce7"/>
+  <circle cx="32" cy="22" r="10" fill="#ffeaa7"/>
+  <rect x="12" y="36" width="40" height="12" rx="3" fill="#fff" opacity="0.2"/>
+  <text x="32" y="56" font-size="8" text-anchor="middle" fill="#fff">Student</text>
+</svg>

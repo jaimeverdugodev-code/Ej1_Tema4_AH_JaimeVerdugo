@@ -1,0 +1,13 @@
+{
+  "name": "Ej1_Tema4_VerdugoJaime",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://camisas-webservice.onrender.com"
+    }
+  ]
+}
